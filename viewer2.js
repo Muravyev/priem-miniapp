@@ -11,17 +11,6 @@ function getTitle() {
 
 document.getElementById('title').textContent = getTitle();
 
-// Кнопка назад
-// Если Mini App открыт в Telegram, закрываем его, иначе возвращаемся назад
-// ... existing code ...
-document.getElementById('backBtn').onclick = function() {
-  if (window.Telegram && Telegram.WebApp) {
-    Telegram.WebApp.close();
-  } else {
-    window.history.back();
-  }
-};
-
 // --- Новая структура меню и ссылки на HTML ---
 const htmlLinks = {
   napravlenia: [
