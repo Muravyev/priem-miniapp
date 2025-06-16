@@ -4,11 +4,13 @@ function getPDFUrl() {
   return params.get('file');
 }
 
+// Теперь getTitle возвращает либо переданный в openHTML title, либо пустую строку
 function getTitle() {
   const params = new URLSearchParams(window.location.search);
-  return params.get('title') || 'Просмотр PDF';
+  return params.get('title') || '';
 }
 
+// ==== УБРАНА СТРОКА: document.getElementById('title').textContent = getTitle(); ====
 
 // --- Новая структура меню и ссылки на HTML ---
 const htmlLinks = {
@@ -100,19 +102,17 @@ function renderHTML(file, title) {
     <button class="btn" onclick="goBack()">Назад</button>
     <button class="btn" onclick="goHome()">Главное меню</button>
   </div>`;
-  html += `<div class="iframe-container"><iframe src="${file}"></iframe></div>`;
+  html += `<div class="iframe-container"><iframe src="${file}?title=${encodeURIComponent(title)}"></iframe></div>`;
   document.getElementById('section-content').innerHTML = html;
 }
 
-// --- Главная страница ---
+// --- Главное меню при загрузке ---
 window.addEventListener('DOMContentLoaded', () => {
-  // Приветствие Telegram WebApp
   if (window.Telegram && Telegram.WebApp && Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user) {
     const user = Telegram.WebApp.initDataUnsafe.user;
     document.getElementById('user-welcome').textContent = `${user.first_name} ${user.last_name || ''}, добро пожаловать!`;
   }
   showMainMenu();
-  // Рендерим главное меню
   document.getElementById('main-menu').innerHTML = `
     <button class="btn menu-btn" onclick="openSection('napravlenia')">Направления подготовки</button>
     <button class="btn menu-btn" onclick="openSection('kcp')">Контрольные цифры приёма</button>
@@ -123,7 +123,7 @@ window.addEventListener('DOMContentLoaded', () => {
   `;
 });
 
-// --- PDF.js ---
+// PDF.js (если используется)
 let currentPdf = null;
 let currentPage = 1;
 
@@ -148,7 +148,6 @@ function renderPage() {
   container.querySelectorAll('canvas').forEach(c => c.remove());
   if (!currentPdf) return;
   currentPdf.getPage(currentPage).then(function(page) {
-    // Масштаб под ширину экрана
     const desiredWidth = Math.min(window.innerWidth - 32, 800);
     const viewport = page.getViewport({ scale: 1 });
     const scale = desiredWidth / viewport.width;
@@ -193,4 +192,4 @@ function addPageControls(container, numPages) {
       updatePageInfo();
     }
   };
-} 
+}
