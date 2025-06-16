@@ -74,16 +74,16 @@ function renderSection(section) {
       html += `<button class="btn submenu-btn" onclick="openHTML('${item.file}', '${item.text}')">${item.text}</button>`;
     });
     html += '</div>';
+    html += `<div class="controls">
+      <button class="btn" onclick="goBack()">Назад</button>
+      <button class="btn" onclick="goHome()">Главное меню</button>
+    </div>`;
+    document.getElementById('section-content').innerHTML = html;
   } else if (section === 'sroki') {
-    html += `<div class="submenu"><button class="btn submenu-btn" onclick="openHTML('Сроки проведения приема.html', 'Сроки приёма')">Сроки приёма</button></div>`;
+    openHTML('Сроки проведения приема.html', 'Сроки приёма');
   } else if (section === 'contacts') {
-    html += `<div class="submenu"><button class="btn submenu-btn" onclick="openHTML('Контакты.html', 'Контакты')">Контакты</button></div>`;
+    openHTML('Контакты.html', 'Контакты');
   }
-  html += `<div class="controls">
-    <button class="btn" onclick="goBack()">Назад</button>
-    <button class="btn" onclick="goHome()">Главное меню</button>
-  </div>`;
-  document.getElementById('section-content').innerHTML = html;
 }
 
 function openHTML(file, title) {
@@ -93,7 +93,10 @@ function openHTML(file, title) {
 
 function renderHTML(file, title) {
   document.getElementById('main-menu').style.display = 'none';
-  let html = `<h2 class="pdf-title">${title}</h2>`;
+  let html = '';
+  if (title) {
+    html += `<h2 class="pdf-title">${title}</h2>`;
+  }
   html += `<div class="iframe-back">
     <button class="btn" onclick="goBack()">Назад</button>
     <button class="btn" onclick="goHome()">Главное меню</button>
