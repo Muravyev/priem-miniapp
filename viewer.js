@@ -111,6 +111,9 @@ function renderPDF(file, title) {
 }
 
 // --- PDF.js ---
+let currentPdf = null;
+let currentPage = 1;
+
 function loadPDF(file) {
   const url = encodeURI(file);
   const container = document.getElementById('pdf-viewer');
@@ -118,23 +121,65 @@ function loadPDF(file) {
   const pdfjsLib = window['pdfjs-dist/build/pdf'];
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
   pdfjsLib.getDocument(url).promise.then(function(pdf) {
-    // Рендерим все страницы
-    for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-      pdf.getPage(pageNum).then(function(page) {
-        const viewport = page.getViewport({ scale: 1.5 });
-        const canvas = document.createElement('canvas');
-        canvas.style.display = 'block';
-        canvas.style.margin = '0 auto 24px auto';
-        container.appendChild(canvas);
-        const context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        page.render({ canvasContext: context, viewport: viewport });
-      });
-    }
+    currentPdf = pdf;
+    currentPage = 1;
+    renderPage();
+    addPageControls(container, pdf.numPages);
   }).catch(function(error) {
     container.innerHTML = '<p style="color:#b71c1c">Ошибка загрузки PDF: ' + error + '</p>';
   });
+}
+
+function renderPage() {
+  const container = document.getElementById('pdf-viewer');
+  container.querySelectorAll('canvas').forEach(c => c.remove());
+  if (!currentPdf) return;
+  currentPdf.getPage(currentPage).then(function(page) {
+    // Масштаб под ширину экрана
+    const desiredWidth = Math.min(window.innerWidth - 32, 800);
+    const viewport = page.getViewport({ scale: 1 });
+    const scale = desiredWidth / viewport.width;
+    const scaledViewport = page.getViewport({ scale });
+    const canvas = document.createElement('canvas');
+    canvas.style.display = 'block';
+    canvas.style.margin = '0 auto 24px auto';
+    container.insertBefore(canvas, container.firstChild);
+    const context = canvas.getContext('2d');
+    canvas.height = scaledViewport.height;
+    canvas.width = scaledViewport.width;
+    page.render({ canvasContext: context, viewport: scaledViewport });
+  });
+}
+
+function addPageControls(container, numPages) {
+  let controls = document.createElement('div');
+  controls.className = 'pdf-page-controls';
+  controls.innerHTML = `
+    <button class="btn" id="prevPage">←</button>
+    <span id="pageInfo"></span>
+    <button class="btn" id="nextPage">→</button>
+  `;
+  container.appendChild(controls);
+
+  function updatePageInfo() {
+    document.getElementById('pageInfo').textContent = `Стр. ${currentPage} из ${numPages}`;
+  }
+  updatePageInfo();
+
+  document.getElementById('prevPage').onclick = function() {
+    if (currentPage > 1) {
+      currentPage--;
+      renderPage();
+      updatePageInfo();
+    }
+  };
+  document.getElementById('nextPage').onclick = function() {
+    if (currentPage < numPages) {
+      currentPage++;
+      renderPage();
+      updatePageInfo();
+    }
+  };
 }
 
 // --- Telegram WebApp приветствие ---
