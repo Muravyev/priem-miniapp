@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <title>31.05.01 – Лечебное дело</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Основные стили мини-приложения -->
   <link rel="stylesheet" href="style.css">
-  <!-- Локальные стили для страницы -->
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -69,28 +67,32 @@
       margin: 6px 0;
       line-height: 1.4;
     }
+    /* Новый стиль для светлого блока */
+    .card.light {
+      background: #f0f0f0;
+      color: #333;
+    }
+    .card.light h3,
+    .card.light ul li {
+      color: #000;
+    }
   </style>
 </head>
 <body>
-  <!-- Навигация мини-приложения -->
   <div class="controls">
     <button class="btn" onclick="goBack()">← Назад</button>
     <button class="btn" onclick="goHome()">Главное меню</button>
   </div>
-
-  <!-- Заголовок раздела -->
   <h2 class="page-title">31.05.01 – Лечебное дело</h2>
-
-  <!-- Контейнер карточек -->
   <section class="info-grid">
-    <div class="card">
+    <div class="card light">
       <h3>Основная информация</h3>
       <ul>
         <li><strong>Форма обучения:</strong> Очная</li>
         <li><strong>Срок обучения:</strong> 6 лет</li>
       </ul>
     </div>
-    <div class="card">
+    <div class="card light">
       <h3>Бюджетные места</h3>
       <ul>
         <li><strong>Целевой приём:</strong> 161 место</li>
@@ -98,7 +100,6 @@
         <li><strong>Отдельная квота:</strong> 2 места</li>
       </ul>
     </div>
-    <!-- При необходимости добавить другие карточки -->
   </section>
 </body>
 </html>
