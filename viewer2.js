@@ -9,7 +9,6 @@ function getTitle() {
   return params.get('title') || 'Просмотр PDF';
 }
 
-document.getElementById('title').textContent = getTitle();
 
 // --- Новая структура меню и ссылки на HTML ---
 const htmlLinks = {
