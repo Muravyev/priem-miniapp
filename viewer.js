@@ -22,17 +22,102 @@ document.getElementById('backBtn').onclick = function() {
   }
 };
 
-// PDF.js
-const url = getPDFUrl();
-if (!url) {
-  document.getElementById('pdf-viewer').innerHTML = '<p style="color:#b71c1c">Ошибка: не передан файл PDF.</p>';
-} else {
+// --- Данные для меню и PDF ---
+const pdfData = {
+  napravlenia: [
+    { text: "Лечебное дело - 31.05.01", file: "Лечебка.pdf" },
+    { text: "Педиатрия - 31.05.02", file: "Педиатрия.pdf" },
+    { text: "Стоматология - 31.05.03", file: "Стомат.pdf" },
+    { text: "Фармация - 33.05.01", file: "Фармация.pdf" },
+    { text: "Медицинская биохимия - 30.05.01", file: "МБХ.pdf" },
+    { text: "Клиническая психология - 37.05.01", file: "Клин.псих.pdf" },
+  ],
+  kcp: [
+    { text: "В рамках контрольных цифр приёма", file: "В%20рамках%20КЦП.pdf" },
+    { text: "На договорной основе", file: "На%20договорной%20основе.pdf" },
+  ],
+  sroki: [
+    { text: "Сроки приёма", file: "Сроки%20приема.pdf" },
+  ],
+  id: [
+    { text: "Виды индивидуальных достижений", file: "Виды%20ИД.pdf" },
+    { text: "Учёт индивидуальных достижений", file: "Учёт%20ИД.pdf" },
+    { text: "Условия и ограничения", file: "Условия%20и%20ограничения.pdf" },
+  ],
+  contacts: [
+    { text: "Контакты", file: "Контакты.pdf" },
+  ],
+};
+
+// --- Навигация ---
+let navStack = [];
+
+function openSection(section) {
+  navStack.push(section);
+  renderSection(section);
+}
+
+function goBack() {
+  navStack.pop();
+  if (navStack.length === 0) {
+    showMainMenu();
+  } else {
+    renderSection(navStack[navStack.length - 1]);
+  }
+}
+
+function goHome() {
+  navStack = [];
+  showMainMenu();
+}
+
+function showMainMenu() {
+  document.getElementById('main-menu').style.display = '';
+  document.getElementById('section-content').innerHTML = '';
+}
+
+function renderSection(section) {
+  document.getElementById('main-menu').style.display = 'none';
+  let html = '';
+  if (pdfData[section]) {
+    html += '<div class="submenu">';
+    pdfData[section].forEach(item => {
+      html += `<button class="btn submenu-btn" onclick="openPDF('${item.file}', '${item.text}')">${item.text}</button>`;
+    });
+    html += '</div>';
+  }
+  html += `<div class="controls">
+    <button class="btn" onclick="goBack()">Назад</button>
+    <button class="btn" onclick="goHome()">Главное меню</button>
+  </div>`;
+  document.getElementById('section-content').innerHTML = html;
+}
+
+function openPDF(file, title) {
+  navStack.push({ pdf: file, title });
+  renderPDF(file, title);
+}
+
+function renderPDF(file, title) {
+  document.getElementById('main-menu').style.display = 'none';
+  let html = `<h2 class="pdf-title">${title}</h2>`;
+  html += `<div class="controls">
+    <button class="btn" onclick="goBack()">Назад</button>
+    <button class="btn" onclick="goHome()">Главное меню</button>
+  </div>`;
+  html += `<div id="pdf-viewer" class="pdf-viewer"></div>`;
+  document.getElementById('section-content').innerHTML = html;
+  loadPDF(file);
+}
+
+// --- PDF.js ---
+function loadPDF(file) {
+  const url = file;
+  const container = document.getElementById('pdf-viewer');
+  container.innerHTML = '';
   const pdfjsLib = window['pdfjs-dist/build/pdf'];
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.js';
-
-  const container = document.getElementById('pdf-viewer');
   pdfjsLib.getDocument(url).promise.then(function(pdf) {
-    // Отобразим первую страницу
     pdf.getPage(1).then(function(page) {
       const viewport = page.getViewport({ scale: 1.5 });
       const canvas = document.createElement('canvas');
@@ -40,10 +125,20 @@ if (!url) {
       const context = canvas.getContext('2d');
       canvas.height = viewport.height;
       canvas.width = viewport.width;
-
       page.render({ canvasContext: context, viewport: viewport });
     });
   }).catch(function(error) {
     container.innerHTML = '<p style="color:#b71c1c">Ошибка загрузки PDF: ' + error + '</p>';
   });
-} 
+}
+
+// --- Telegram WebApp приветствие ---
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.Telegram && Telegram.WebApp && Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user) {
+    const user = Telegram.WebApp.initDataUnsafe.user;
+    document.getElementById('user-welcome').textContent = `${user.first_name} ${user.last_name || ''}, добро пожаловать!`;
+  }
+});
+
+// --- Инициализация ---
+showMainMenu(); 

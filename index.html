@@ -2,17 +2,28 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Просмотр PDF — СГМУ</title>
+  <title>Приёмная комиссия СГМУ — Mini App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <!-- PDF.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.js"></script>
 </head>
 <body>
   <div class="header">
     <img src="logo.png" alt="Логотип СГМУ" class="logo">
-    <h1 id="title">Просмотр PDF</h1>
+    <h1 id="title">Добро пожаловать в Mini App приёмной комиссии СГМУ!</h1>
+    <div id="user-welcome"></div>
   </div>
+  <div id="main-menu" class="menu">
+    <button class="btn menu-btn" onclick="openSection('napravlenia')">Направления подготовки</button>
+    <button class="btn menu-btn" onclick="openSection('kcp')">Контрольные цифры приёма</button>
+    <button class="btn menu-btn" onclick="openSection('sroki')">Сроки приёма</button>
+    <button class="btn menu-btn" onclick="openSection('id')">Индивидуальные достижения</button>
+    <button class="btn menu-btn" onclick="openSection('contacts')">Контакты</button>
+    <a class="btn menu-btn" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank">Задать вопрос</a>
+  </div>
+  <div id="section-content"></div>
   <div class="controls">
     <button id="backBtn" class="btn">Назад</button>
   </div>
