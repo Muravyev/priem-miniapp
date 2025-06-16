@@ -112,7 +112,7 @@ function renderPDF(file, title) {
 
 // --- PDF.js ---
 function loadPDF(file) {
-  const url = file;
+  const url = encodeURI(file);
   const container = document.getElementById('pdf-viewer');
   container.innerHTML = '';
   const pdfjsLib = window['pdfjs-dist/build/pdf'];
