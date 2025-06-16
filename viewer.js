@@ -116,7 +116,7 @@ function loadPDF(file) {
   const container = document.getElementById('pdf-viewer');
   container.innerHTML = '';
   const pdfjsLib = window['pdfjs-dist/build/pdf'];
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.2.67/build/pdf.worker.min.js';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
   pdfjsLib.getDocument(url).promise.then(function(pdf) {
     pdf.getPage(1).then(function(page) {
       const viewport = page.getViewport({ scale: 1.5 });
