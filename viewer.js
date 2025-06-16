@@ -22,34 +22,34 @@ document.getElementById('backBtn').onclick = function() {
   }
 };
 
-// --- Данные для меню и PDF ---
-const pdfData = {
+// --- Новая структура меню и ссылки на HTML ---
+const htmlLinks = {
   napravlenia: [
-    { text: "Лечебное дело - 31.05.01", file: "Лечебка.pdf" },
-    { text: "Педиатрия - 31.05.02", file: "Педиатрия.pdf" },
-    { text: "Стоматология - 31.05.03", file: "Стомат.pdf" },
-    { text: "Фармация - 33.05.01", file: "Фармация.pdf" },
-    { text: "Медицинская биохимия - 30.05.01", file: "МБХ.pdf" },
-    { text: "Клиническая психология - 37.05.01", file: "Клин.псих.pdf" },
+    { text: "Лечебное дело - 31.05.01", file: "Лечебка.html" },
+    { text: "Педиатрия - 31.05.02", file: "Педиатрия.html" },
+    { text: "Стоматология - 31.05.03", file: "Стомат.html" },
+    { text: "Фармация - 33.05.01", file: "Фармация.html" },
+    { text: "Медицинская биохимия - 30.05.01", file: "МБХ.html" },
+    { text: "Клиническая психология - 37.05.01", file: "Клин.псих.html" },
   ],
   kcp: [
-    { text: "В рамках контрольных цифр приёма", file: "В рамках КЦП.pdf" },
-    { text: "На договорной основе", file: "На договорной основе.pdf" },
+    { text: "В рамках контрольных цифр приёма", file: "КЦП.html" },
+    { text: "На договорной основе", file: "КЦП_договор.html" },
   ],
   sroki: [
-    { text: "Сроки приёма", file: "Сроки приема.pdf" },
+    { text: "Сроки приёма", file: "Сроки проведения приема.html" },
   ],
-  id: [
-    { text: "Виды индивидуальных достижений", file: "Виды ИД.pdf" },
-    { text: "Учёт индивидуальных достижений", file: "Учёт ИД.pdf" },
-    { text: "Условия и ограничения", file: "Условия и ограничения.pdf" },
+  info: [
+    { text: "Индивидуальные достижения", file: "Учёт индивидуальных достижений.html" },
+    { text: "Особые права при поступлении", file: "Особые права при поступлении.html" },
+    { text: "Целевое обучение в вузах", file: "Целевое обучение в вузах.html" },
+    { text: "Места приёма документов", file: "Места приема документов.html" },
   ],
   contacts: [
-    { text: "Контакты", file: "Контакты.pdf" },
+    { text: "Контакты", file: "Контакты.html" },
   ],
 };
 
-// --- Навигация ---
 let navStack = [];
 
 function openSection(section) {
@@ -79,12 +79,16 @@ function showMainMenu() {
 function renderSection(section) {
   document.getElementById('main-menu').style.display = 'none';
   let html = '';
-  if (pdfData[section]) {
+  if (section === 'napravlenia' || section === 'kcp' || section === 'info') {
     html += '<div class="submenu">';
-    pdfData[section].forEach(item => {
-      html += `<button class="btn submenu-btn" onclick="openPDF('${item.file}', '${item.text}')">${item.text}</button>`;
+    htmlLinks[section].forEach(item => {
+      html += `<button class="btn submenu-btn" onclick="openHTML('${item.file}', '${item.text}')">${item.text}</button>`;
     });
     html += '</div>';
+  } else if (section === 'sroki') {
+    html += `<div class="submenu"><button class="btn submenu-btn" onclick="openHTML('Сроки проведения приема.html', 'Сроки приёма')">Сроки приёма</button></div>`;
+  } else if (section === 'contacts') {
+    html += `<div class="submenu"><button class="btn submenu-btn" onclick="openHTML('Контакты.html', 'Контакты')">Контакты</button></div>`;
   }
   html += `<div class="controls">
     <button class="btn" onclick="goBack()">Назад</button>
@@ -93,22 +97,40 @@ function renderSection(section) {
   document.getElementById('section-content').innerHTML = html;
 }
 
-function openPDF(file, title) {
-  navStack.push({ pdf: file, title });
-  renderPDF(file, title);
+function openHTML(file, title) {
+  navStack.push({ html: file, title });
+  renderHTML(file, title);
 }
 
-function renderPDF(file, title) {
+function renderHTML(file, title) {
   document.getElementById('main-menu').style.display = 'none';
   let html = `<h2 class="pdf-title">${title}</h2>`;
-  html += `<div class="controls">
+  html += `<div class="iframe-back">
     <button class="btn" onclick="goBack()">Назад</button>
     <button class="btn" onclick="goHome()">Главное меню</button>
   </div>`;
-  html += `<div id="pdf-viewer" class="pdf-viewer"></div>`;
+  html += `<div class="iframe-container"><iframe src="${file}"></iframe></div>`;
   document.getElementById('section-content').innerHTML = html;
-  loadPDF(file);
 }
+
+// --- Главная страница ---
+window.addEventListener('DOMContentLoaded', () => {
+  // Приветствие Telegram WebApp
+  if (window.Telegram && Telegram.WebApp && Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user) {
+    const user = Telegram.WebApp.initDataUnsafe.user;
+    document.getElementById('user-welcome').textContent = `${user.first_name} ${user.last_name || ''}, добро пожаловать!`;
+  }
+  showMainMenu();
+  // Рендерим главное меню
+  document.getElementById('main-menu').innerHTML = `
+    <button class="btn menu-btn" onclick="openSection('napravlenia')">Направления подготовки</button>
+    <button class="btn menu-btn" onclick="openSection('kcp')">Контрольные цифры приёма</button>
+    <button class="btn menu-btn" onclick="openSection('sroki')">Сроки приёма</button>
+    <button class="btn menu-btn" onclick="openSection('info')">Общая информация</button>
+    <button class="btn menu-btn" onclick="openSection('contacts')">Контакты</button>
+    <div class="menu-bottom"><a class="btn menu-btn" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank">Задать вопрос</a></div>
+  `;
+});
 
 // --- PDF.js ---
 let currentPdf = null;
@@ -180,15 +202,4 @@ function addPageControls(container, numPages) {
       updatePageInfo();
     }
   };
-}
-
-// --- Telegram WebApp приветствие ---
-window.addEventListener('DOMContentLoaded', () => {
-  if (window.Telegram && Telegram.WebApp && Telegram.WebApp.initDataUnsafe && Telegram.WebApp.initDataUnsafe.user) {
-    const user = Telegram.WebApp.initDataUnsafe.user;
-    document.getElementById('user-welcome').textContent = `${user.first_name} ${user.last_name || ''}, добро пожаловать!`;
-  }
-});
-
-// --- Инициализация ---
-showMainMenu(); 
+} 
