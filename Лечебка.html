@@ -10,31 +10,50 @@
     .page-title { text-align: center; color: #b71c1c; font-size: 1.5em; margin-bottom: 24px; }
     .info-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
     @media (min-width: 600px) { .info-grid { grid-template-columns: 1fr 1fr; } }
-    .card { background: #b71c1c; color: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(183,28,28,0.2); }
-    .card.light { background: #f0f0f0; color: #333; }
-    .card.light h3, .card.light ul li { color: #000; }
+    .card {
+      background: #f0f0f0;
+      color: #333;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
     .card h3 { margin-top: 0; font-size: 1.2em; }
     .card ul { list-style: none; margin: 8px 0 0; padding: 0; }
     .card ul li { margin: 6px 0; line-height: 1.4; }
   </style>
 </head>
 <body>
-  <!-- Страница без нижних кнопок: навигация сверху в index.html -->
   <h2 class="page-title">31.05.01 – Лечебное дело</h2>
   <section class="info-grid">
-    <div class="card light">
+    <div class="card">
       <h3>Основная информация</h3>
       <ul>
-        <li><strong>Форма обучения:</strong> Очная</li>
+        <li><strong>Форма обучения:</strong> очная</li>
         <li><strong>Срок обучения:</strong> 6 лет</li>
       </ul>
     </div>
-    <div class="card light">
+    <div class="card">
       <h3>Бюджетные места</h3>
       <ul>
         <li><strong>Целевой приём:</strong> 161 место</li>
-        <li><strong>Особая квота:</strong> 2 места</li>
-        <li><strong>Отдельная квота:</strong> 2 места</li>
+        <li><strong>Особая квота:</strong> 21</li>
+        <li><strong>Отдельная квота:</strong> 21</li>
+        <li><strong>Общий конкурс:</strong> 4</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Вступительные испытания</h3>
+      <ul>
+        <li>Химия (40 баллов)</li>
+        <li>Биология (40 баллов)</li>
+        <li>Русский язык (38 баллов)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Платное обучение</h3>
+      <ul>
+        <li><strong>Платные места:</strong> 178 доступно</li>
+        <li><strong>Стоимость обучения:</strong> 199 500 – 213 500 ₽/год</li>
       </ul>
     </div>
   </section>
