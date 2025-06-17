@@ -1,53 +1,43 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const sectionContent = document.getElementById('section-content');
-  const mainMenu = document.getElementById('main-menu');
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Приёмная комиссия СГМУ — Mini App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="header">
+    <img src="logo.png" alt="Логотип СГМУ" class="logo">
+    <div id="user-welcome" style="color:#000; font-size:18px; text-align:center; font-weight:600; margin-bottom: 12px;"></div>
+  </div>
 
-  const sections = [
-    { text: "Специальности", file: "napravlenia.html" },
-    { text: "Контрольные цифры приёма", file: "KCP.html" },
-    { text: "Сроки приёма", file: "Sroki_provedenia_priema_v_2025_godu.html" },
-    { text: "Общая информация", file: "info.html" },
-    { text: "Контакты", file: "Kontakty.html" },
-    { text: "Индивидуальные достижения", file: "Uchet_individualnykh_dostizheniy.html" },
-    { text: "Целевое обучение", file: "Celevoe_obuchenie.html" },
-    { text: "Особые права", file: "Osobye_prava.html" },
-    { text: "Личный кабинет", file: "Lichny_kabinet.html" },
-    { text: "Платное обучение", file: "Platnoe_obuchenie.html" }
-  ];
+  <div id="main-menu" class="menu">
+    <button class="btn menu-btn" onclick="openSection('napravlenia')">Специальности</button>
+    <button class="btn menu-btn" onclick="openSection('kcp')">Контрольные цифры приёма</button>
+    <button class="btn menu-btn" onclick="openSection('sroki')">Сроки приёма</button>
+    <button class="btn menu-btn" onclick="openSection('info')">Общая информация</button>
+    <button class="btn menu-btn" onclick="openSection('contacts')">Контакты</button>
+    <div class="menu-bottom" style="display: flex; justify-content: center;">
+      <a class="btn menu-btn" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank" style="text-align:center;">Задать вопрос</a>
+    </div>
+  </div>
 
-  window.openSection = function (section) {
-    const found = sections.find(s => s.file.toLowerCase().includes(section));
-    if (found) {
-      fetch(found.file)
-        .then(res => res.text())
-        .then(html => {
-          sectionContent.innerHTML = `
-            <div class="top-nav">
-              <button class="btn back-btn" onclick="goBack()">← Назад</button>
-              <button class="btn home-btn" onclick="goHome()">🏠 Главное меню</button>
-            </div>
-            <div class="section">${html}</div>
-          `;
-          mainMenu.style.display = 'none';
-        });
-    }
-  };
+  <div id="section-content"></div>
 
-  window.goBack = function () {
-    sectionContent.innerHTML = '';
-    mainMenu.style.display = 'block';
-  };
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const userBlock = document.getElementById('user-welcome');
+      if (Telegram?.WebApp?.initDataUnsafe?.user) {
+        const user = Telegram.WebApp.initDataUnsafe.user;
+        userBlock.textContent = `${user.first_name} ${user.last_name || ''}, добро пожаловать в мини-приложение приёмной комиссии СГМУ!`;
+      } else {
+        userBlock.textContent = `Добро пожаловать в мини-приложение приёмной комиссии СГМУ!`;
+      }
+    });
+  </script>
 
-  window.goHome = function () {
-    sectionContent.innerHTML = '';
-    mainMenu.style.display = 'block';
-  };
-
-  const welcomeBlock = document.getElementById('user-welcome');
-  if (Telegram.WebApp?.initDataUnsafe?.user) {
-    const user = Telegram.WebApp.initDataUnsafe.user;
-    welcomeBlock.innerHTML = `<span>${user.first_name} ${user.last_name || ''}, добро пожаловать в мини-приложение приёмной комиссии СГМУ!</span>`;
-  } else {
-    welcomeBlock.innerHTML = `<span>Добро пожаловать в мини-приложение приёмной комиссии СГМУ!</span>`;
-  }
-});
+  <script src="viewer2.js"></script>
+</body>
+</html>
