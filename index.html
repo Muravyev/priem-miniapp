@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -12,17 +11,27 @@
   <div class="container">
     <div class="header">
       <img src="logo.png" alt="СГМУ" class="logo" />
-      <h1 class="app-title">Добро пожаловать в Mini App приёмной комиссии СГМУ!</h1>
-      <h2 class="user-name">Александр Муравьёв, добро пожаловать!</h2>
+      <h1 class="app-title" id="welcome-text">Добро пожаловать!</h1>
     </div>
-    <div class="buttons">
-      <a href="napravlenia.html" class="btn">Специальности</a>
-      <a href="KCP.html" class="btn">Контрольные цифры приёма</a>
-      <a href="Sroki_provedenia_priema_v_2025_godu.html" class="btn">Сроки приёма</a>
-      <a href="info.html" class="btn">Общая информация</a>
-      <a href="Kontakty.html" class="btn">Контакты</a>
-      <div class="btn ask-question"><a href="https://t.me/+S73kWaiJWKhmNmJi">Задать вопрос</a></div>
+    <div id="main-buttons" class="buttons">
+      <button onclick="loadPage('napravlenia.html')" class="btn">Специальности</button>
+      <button onclick="loadPage('KCP.html')" class="btn">Контрольные цифры приёма</button>
+      <button onclick="loadPage('Sroki_provedenia_priema_v_2025_godu.html')" class="btn">Сроки приёма</button>
+      <button onclick="loadPage('info.html')" class="btn">Общая информация</button>
+      <button onclick="loadPage('Kontakty.html')" class="btn">Контакты</button>
+      <button onclick="loadPage('Uchet_individualnykh_dostizheniy.html')" class="btn">Индивидуальные достижения</button>
+      <button onclick="loadPage('Celevoe_obuchenie.html')" class="btn">Целевое обучение</button>
+      <button onclick="loadPage('Osobye_prava.html')" class="btn">Особые права</button>
+      <button onclick="loadPage('Lichny_kabinet.html')" class="btn">Личный кабинет</button>
+      <button onclick="loadPage('Platnoe_obuchenie.html')" class="btn">Платное обучение</button>
+      <a class="btn ask-question" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank">Задать вопрос</a>
+    </div>
+    <div id="content" style="display:none;"></div>
+    <div id="nav" style="display:none; margin-top: 15px;">
+      <button onclick="goBack()" class="btn">← Назад</button>
+      <button onclick="goHome()" class="btn">Главное меню</button>
     </div>
   </div>
+  <script src="viewer2.js"></script>
 </body>
 </html>
