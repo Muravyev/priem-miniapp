@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Учёт индивидуальных достижений</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 16px; background: #fff; color: #333; }
+    .page-title { text-align: center; color: #b71c1c; font-size: 1.5em; margin-bottom: 24px; }
+    .info-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 600px) { .info-grid { grid-template-columns: 1fr 1fr; } }
+    .card { background: #f0f0f0; color: #333; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .card.full { grid-column: span 2; }
+    .card h3 { margin-top: 0; font-size: 1.2em; color: #000; }
+    .card p, .card ul { margin: 8px 0 0; padding: 0; line-height: 1.4; }
+    .card ul { list-style: none; }
+    .card ul li { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <h2 class="page-title">Учёт индивидуальных достижений поступающих</h2>
+  <section class="info-grid">
+    <div class="card full">
+      <h3>Общие положения</h3>
+      <p>Учёт индивидуальных достижений поступающих осуществляется в соответствии с правилами приёма в университет. Это позволяет объективно оценить потенциал абитуриентов и их готовность к обучению.</p>
+    </div>
+    <div class="card">
+      <h3>Начисление баллов</h3>
+      <ul>
+        <li>Общие достижения: до 10 баллов</li>
+        <li>Целевые достижения: до 5 баллов</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Условия при равенстве баллов</h3>
+      <p>При равенстве конкурсных баллов учитываются индивидуальные достижения для определения приоритета абитуриента.</p>
+    </div>
+    <div class="card full">
+      <h3>Виды индивидуальных достижений</h3>
+      <ul>
+        <li><strong>Образование с отличием:</strong> аттестаты и дипломы с отличием – 10 баллов</li>
+        <li><strong>Медаль «За особые успехи в учении»:</strong> I или II степень – учёт при равенстве</li>
+        <li><strong>Олимпиады школьников:</strong> победители 1 места – 5 баллов; 2–3 места – 4 балла; очный этап – 2 балла (действуют 2 года)</li>
+        <li><strong>Военная служба и добровольчество:</strong> по призыву/контракту – 10 баллов; добровольная деятельность – 10 баллов</li>
+        <li><strong>Спортивные достижения:</strong> знак «ГТО» – 2 балла; звание МС/КМС/1 разряд – 3 балла</li>
+        <li><strong>Дополнительное образование:</strong> 600 часов – 4 балла; 408 часов – 2 балла</li>
+        <li><strong>Волонтёрская деятельность:</strong> не менее 108 часов – 5 баллов</li>
+      </ul>
+    </div>
+    <div class="card full">
+      <h3>Условия и ограничения</h3>
+      <ul>
+        <li>Все достижения должны быть подтверждены документами</li>
+        <li>Баллы действуют в течение установленного периода (обычно 2 года)</li>
+        <li>Учет проводится в соответствии с правилами приёма и может быть обновлён в период приёма документов</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
