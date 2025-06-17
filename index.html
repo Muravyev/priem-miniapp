@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Приёмная комиссия СГМУ — Мини Приложение</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Приёмная комиссия СГМУ</title>
+  <link rel="stylesheet" href="style.css" />
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <div class="header">
-    <img src="logo.png" alt="Логотип СГМУ" class="logo">
-    <h1 id="title">Добро пожаловать в Mini App приёмной комиссии СГМУ!</h1>
-    <div id="user-welcome"></div>
-  </div>
-
-  <div id="main-menu" class="menu">
-    <button class="btn menu-btn" onclick="openSection('napravlenia')">Специальности</button>
-    <button class="btn menu-btn" onclick="openSection('kcp')">Контрольные цифры приёма</button>
-    <button class="btn menu-btn" onclick="openSection('sroki')">Сроки приёма</button>
-    <button class="btn menu-btn" onclick="openSection('info')">Общая информация</button>
-    <button class="btn menu-btn" onclick="openSection('contacts')">Контакты</button>
-    <div class="menu-bottom" style="justify-content: center;">
-      <a class="btn menu-btn" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank">Задать вопрос</a>
+  <div class="container">
+    <div id="user-welcome" class="welcome-text"></div>
+    <div id="main-menu" class="main-menu">
+      <button onclick="openSection('napravlenia')" class="btn">Специальности</button>
+      <button onclick="openSection('KCP')" class="btn">Контрольные цифры приёма</button>
+      <button onclick="openSection('Sroki_provedenia_priema_v_2025_godu')" class="btn">Сроки приёма</button>
+      <button onclick="openSection('info')" class="btn">Общая информация</button>
+      <button onclick="openSection('Kontakty')" class="btn">Контакты</button>
+      <button onclick="openSection('Uchet_individualnykh_dostizheniy')" class="btn">Индивидуальные достижения</button>
+      <button onclick="openSection('Celevoe_obuchenie')" class="btn">Целевое обучение</button>
+      <button onclick="openSection('Osobye_prava')" class="btn">Особые права</button>
+      <button onclick="openSection('Lichny_kabinet')" class="btn">Личный кабинет</button>
+      <button onclick="openSection('Platnoe_obuchenie')" class="btn">Платное обучение</button>
+      <div class="menu-bottom">
+        <a class="btn menu-btn" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank">Задать вопрос</a>
+      </div>
     </div>
+    <div id="section-content"></div>
   </div>
-
-  <div id="section-content"></div>
-
   <script src="viewer2.js"></script>
 </body>
 </html>
