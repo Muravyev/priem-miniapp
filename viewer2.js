@@ -10,8 +10,6 @@ function getTitle() {
   return params.get('title') || '';
 }
 
-// ==== УБРАНА СТРОКА: document.getElementById('title').textContent = getTitle(); ====
-
 // --- Новая структура меню и ссылки на HTML ---
 const htmlLinks = {
   napravlenia: [
@@ -32,7 +30,7 @@ const htmlLinks = {
   info: [
     { text: "Индивидуальные достижения", file: "Учёт индивидуальных достижений.html" },
     { text: "Особые права при поступлении", file: "Особые права при поступлении.html" },
-    { text: "Целевое обучение в вузах", file: "Целевое обучение в вузах.html" },
+    { text: "Целевое обучение в вузах", file: "Целевое обучение.html" },
     { text: "Места приёма документов", file: "Места приема документов.html" },
   ],
   contacts: [
@@ -76,7 +74,7 @@ function renderSection(section) {
     });
     html += '</div>';
     html += `<div class="controls">
-      <button class="btn" onclick="goBack()">Назад</button>
+      <button class="btn" onclick="goBack()">← Назад</button>
       <button class="btn" onclick="goHome()">Главное меню</button>
     </div>`;
     document.getElementById('section-content').innerHTML = html;
@@ -99,7 +97,7 @@ function renderHTML(file, title) {
     html += `<h2 class="pdf-title">${title}</h2>`;
   }
   html += `<div class="iframe-back">
-    <button class="btn" onclick="goBack()">Назад</button>
+    <button class="btn" onclick="goBack()">← Назад</button>
     <button class="btn" onclick="goHome()">Главное меню</button>
   </div>`;
   html += `<div class="iframe-container"><iframe src="${file}?title=${encodeURIComponent(title)}"></iframe></div>`;
@@ -114,7 +112,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   showMainMenu();
   document.getElementById('main-menu').innerHTML = `
-    <button class="btn menu-btn" onclick="openSection('napravlenia')">Направления подготовки</button>
+    <button class="btn menu-btn" onclick="openSection('napravlenia')">Специальности</button>
     <button class="btn menu-btn" onclick="openSection('kcp')">Контрольные цифры приёма</button>
     <button class="btn menu-btn" onclick="openSection('sroki')">Сроки приёма</button>
     <button class="btn menu-btn" onclick="openSection('info')">Общая информация</button>
