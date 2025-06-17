@@ -7,8 +7,6 @@
   <link rel="stylesheet" href="style.css">
   <style>
     body { font-family: 'Segoe UI', Arial, sans-serif; margin: 16px; background: #fff; color: #333; }
-    .btn { background: #b71c1c; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; font-size: 1em; cursor: pointer; transition: background 0.2s; }
-    .btn:hover { background: #d32f2f; }
     .page-title { text-align: center; color: #b71c1c; font-size: 1.5em; margin-bottom: 24px; }
     .info-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
     @media (min-width: 600px) { .info-grid { grid-template-columns: 1fr 1fr; } }
@@ -18,12 +16,11 @@
     .card h3 { margin-top: 0; font-size: 1.2em; }
     .card ul { list-style: none; margin: 8px 0 0; padding: 0; }
     .card ul li { margin: 6px 0; line-height: 1.4; }
-    .footer-controls { display: flex; justify-content: center; gap: 10px; margin-top: 24px; }
   </style>
 </head>
 <body>
+  <!-- Страница без нижних кнопок: навигация сверху в index.html -->
   <h2 class="page-title">31.05.01 – Лечебное дело</h2>
-
   <section class="info-grid">
     <div class="card light">
       <h3>Основная информация</h3>
@@ -41,10 +38,5 @@
       </ul>
     </div>
   </section>
-
-  <div class="footer-controls">
-    <button class="btn" onclick="goBack()">← Назад</button>
-    <button class="btn" onclick="goHome()">Главное меню</button>
-  </div>
 </body>
 </html>
