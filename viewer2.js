@@ -2,17 +2,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const sectionContent = document.getElementById('section-content');
   const mainMenu = document.getElementById('main-menu');
 
+  const GITHUB_BASE = "https://muravyev.github.io/priem-miniapp/";
   const sections = [
-    { text: "Специальности", file: "napravlenia.html" },
-    { text: "Контрольные цифры приёма", file: "KCP.html" },
-    { text: "Сроки приёма", file: "Sroki_provedenia_priema_v_2025_godu.html" },
-    { text: "Общая информация", file: "info.html" },
-    { text: "Контакты", file: "Kontakty.html" },
-    { text: "Индивидуальные достижения", file: "Uchet_individualnykh_dostizheniy.html" },
-    { text: "Целевое обучение", file: "Celevoe_obuchenie.html" },
-    { text: "Особые права", file: "Osobye_prava.html" },
-    { text: "Личный кабинет", file: "Lichny_kabinet.html" },
-    { text: "Платное обучение", file: "Platnoe_obuchenie.html" }
+    { text: "Специальности", file: GITHUB_BASE + "napravlenia.html" },
+    { text: "Контрольные цифры приёма", file: GITHUB_BASE + "KCP.html" },
+    { text: "Сроки приёма", file: GITHUB_BASE + "Sroki_provedenia_priema_v_2025_godu.html" },
+    { text: "Общая информация", file: GITHUB_BASE + "info.html" },
+    { text: "Контакты", file: GITHUB_BASE + "Kontakty.html" },
+    { text: "Индивидуальные достижения", file: GITHUB_BASE + "Uchet_individualnykh_dostizheniy.html" },
+    { text: "Целевое обучение", file: GITHUB_BASE + "Celevoe_obuchenie.html" },
+    { text: "Особые права", file: GITHUB_BASE + "Osobye_prava.html" },
+    { text: "Личный кабинет", file: GITHUB_BASE + "Lichny_kabinet.html" },
+    { text: "Платное обучение", file: GITHUB_BASE + "Platnoe_obuchenie.html" }
   ];
 
   window.openSection = function (section) {
