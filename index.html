@@ -1,37 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Мини-приложение СГМУ</title>
+  <meta charset="UTF-8">
+  <title>Приёмная комиссия СГМУ — Мини Приложение</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <img src="logo.png" alt="СГМУ" class="logo" />
-      <h1 class="app-title" id="welcome-text">Добро пожаловать!</h1>
-    </div>
-    <div id="main-buttons" class="buttons">
-      <button onclick="loadPage('napravlenia.html')" class="btn">Специальности</button>
-      <button onclick="loadPage('KCP.html')" class="btn">Контрольные цифры приёма</button>
-      <button onclick="loadPage('Sroki_provedenia_priema_v_2025_godu.html')" class="btn">Сроки приёма</button>
-      <button onclick="loadPage('info.html')" class="btn">Общая информация</button>
-      <button onclick="loadPage('Kontakty.html')" class="btn">Контакты</button>
-      <button onclick="loadPage('Uchet_individualnykh_dostizheniy.html')" class="btn">Индивидуальные достижения</button>
-      <button onclick="loadPage('Celevoe_obuchenie.html')" class="btn">Целевое обучение</button>
-      <button onclick="loadPage('Osobye_prava.html')" class="btn">Особые права</button>
-      <button onclick="loadPage('Lichny_kabinet.html')" class="btn">Личный кабинет</button>
-      <button onclick="loadPage('Platnoe_obuchenie.html')" class="btn">Платное обучение</button>
-      <a class="btn ask-question" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank">Задать вопрос</a>
-    </div>
-    <div id="content" style="display:none;"></div>
-    <div id="nav" style="display:none; margin-top: 15px;">
-      <button onclick="goBack()" class="btn">← Назад</button>
-      <button onclick="goHome()" class="btn">Главное меню</button>
+  <div class="header">
+    <img src="logo.png" alt="Логотип СГМУ" class="logo">
+    <h1 id="title">Добро пожаловать в Mini App приёмной комиссии СГМУ!</h1>
+    <div id="user-welcome"></div>
+  </div>
+
+  <div id="main-menu" class="menu">
+    <button class="btn menu-btn" onclick="openSection('napravlenia')">Специальности</button>
+    <button class="btn menu-btn" onclick="openSection('kcp')">Контрольные цифры приёма</button>
+    <button class="btn menu-btn" onclick="openSection('sroki')">Сроки приёма</button>
+    <button class="btn menu-btn" onclick="openSection('info')">Общая информация</button>
+    <button class="btn menu-btn" onclick="openSection('contacts')">Контакты</button>
+    <div class="menu-bottom" style="justify-content: center;">
+      <a class="btn menu-btn" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank">Задать вопрос</a>
     </div>
   </div>
+
+  <div id="section-content"></div>
+
   <script src="viewer2.js"></script>
 </body>
 </html>
