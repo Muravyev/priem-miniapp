@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const welcomeBlock = document.getElementById('user-welcome');
   if (Telegram.WebApp?.initDataUnsafe?.user) {
     const user = Telegram.WebApp.initDataUnsafe.user;
-    welcomeBlock.innerHTML = `<span>${user.first_name} ${user.last_name || ''}, добро пожаловать в мини-приложение приёмной комиссии СГМУ!</span>`;
+    welcomeBlock.innerHTML = `<span style="color:#000;">${user.first_name} ${user.last_name || ''}, добро пожаловать в мини-приложение приёмной комиссии СГМУ!</span>`;
   } else {
-    welcomeBlock.innerHTML = `<span>Добро пожаловать в мини-приложение приёмной комиссии СГМУ!</span>`;
+    welcomeBlock.innerHTML = `<span style="color:#000;">Добро пожаловать в мини-приложение приёмной комиссии СГМУ!</span>`;
   }
 });
