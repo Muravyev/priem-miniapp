@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Приёмная комиссия СГМУ — Mini App</title>
+  <title>Приёмная комиссия СГМУ — Мини Приложение</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -13,8 +13,20 @@
     <h1 id="title">Добро пожаловать в Mini App приёмной комиссии СГМУ!</h1>
     <div id="user-welcome"></div>
   </div>
-  <div id="main-menu" class="menu"></div>
+
+  <div id="main-menu" class="menu">
+    <button class="btn menu-btn" onclick="openSection('napravlenia')">Специальности</button>
+    <button class="btn menu-btn" onclick="openSection('kcp')">Контрольные цифры приёма</button>
+    <button class="btn menu-btn" onclick="openSection('sroki')">Сроки приёма</button>
+    <button class="btn menu-btn" onclick="openSection('info')">Общая информация</button>
+    <button class="btn menu-btn" onclick="openSection('contacts')">Контакты</button>
+    <div class="menu-bottom" style="justify-content: center;">
+      <a class="btn menu-btn" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank">Задать вопрос</a>
+    </div>
+  </div>
+
   <div id="section-content"></div>
+
   <script src="viewer2.js"></script>
 </body>
 </html>
