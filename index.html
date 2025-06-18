@@ -10,18 +10,17 @@
 <body>
   <div class="header">
     <img src="logo.png" alt="Логотип СГМУ" class="logo">
-    <h1 id="title">Добро пожаловать в Mini App приёмной комиссии СГМУ!</h1>
     <div id="user-welcome"></div>
   </div>
 
   <div id="main-menu" class="menu">
-    <button class="btn menu-btn" onclick="openSection('napravlenia')">Направления подготовки</button>
+    <button class="btn menu-btn" onclick="openSection('napravlenia')">Специальности</button>
     <button class="btn menu-btn" onclick="openSection('kcp')">Контрольные цифры приёма</button>
     <button class="btn menu-btn" onclick="openSection('sroki')">Сроки приёма</button>
     <button class="btn menu-btn" onclick="openSection('faq')">Общие вопросы</button>
     <button class="btn menu-btn" onclick="openSection('contacts')">Контакты</button>
     <div class="menu-bottom" style="justify-content: center;">
-      <a class="btn menu-btn" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank">Задать вопрос</a>
+      <a class="btn menu-btn" id="ask-btn" href="https://t.me/+S73kWaiJWKhmNmJi" target="_blank">Задать вопрос</a>
     </div>
   </div>
 
