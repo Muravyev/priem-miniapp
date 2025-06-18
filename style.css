@@ -76,7 +76,10 @@ h1#title {
 .menu-bottom .menu-btn {
   margin: 0 auto;
   width: 220px;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .controls {
   display: flex;
